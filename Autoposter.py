@@ -127,7 +127,7 @@ async def new_schedule(event):
         await conv.send_message('How many posts do you want to forward in each batch?')
         post_limit = await conv.get_response()
         if not post_limit.text.isdigit():
-        	 await conv.send_message('Invalid number of posts. Please restart the process with /newschedule.')
+        	await conv.send_message('Invalid number of posts. Please restart the process with /newschedule.')
             return
 
         await conv.send_message('What is the time interval between batches in seconds?')
