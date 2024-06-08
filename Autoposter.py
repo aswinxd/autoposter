@@ -107,6 +107,7 @@ async def start(event):
 
 
 # Event handler for creating a new schedule
+# Event handler for creating a new schedule
 @bot.on(events.NewMessage(pattern='/newschedule'))
 async def new_schedule(event):
     user_id = event.sender_id
@@ -127,7 +128,7 @@ async def new_schedule(event):
         await conv.send_message('How many posts do you want to forward in each batch?')
         post_limit = await conv.get_response()
         if not post_limit.text.isdigit():
-        	await conv.send_message('Invalid number of posts. Please restart the process with /newschedule.')
+            await conv.send_message('Invalid number of posts. Please restart the process with /newschedule.')
             return
 
         await conv.send_message('What is the time interval between batches in seconds?')
@@ -164,7 +165,6 @@ async def new_schedule(event):
         tasks[user_id] = task
 
         await conv.send_message(f'Schedule details:\nSource Channel ID: {source_channel_id.text}\nDestination Channel ID: {destination_channel_id.text}\nPost Limit: {post_limit.text}\nDelay: {delay.text} seconds')
-
 # Event handler for stopping the forwarding process
 @bot.on(events.NewMessage(pattern='/stop'))
 async def stop(event):
