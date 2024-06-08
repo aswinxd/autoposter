@@ -27,21 +27,21 @@ async def forward_messages(user_id, source_channel_id, destination_channel_id, b
     async with client:
         async for message in client.iter_messages(int(source_channel_id), reverse=True):
             if post_counter >= batch_size:
-                await asyncio.sleep(delay)  # Wait for the specified delay before sending the next batch
-                post_counter = 0  # Reset the post counter after sending a batch
+                await asyncio.sleep(delay) 
+                post_counter = 0  
 
-            if message.photo or message.video:
-                try:
-                    await client.send_message(int(destination_channel_id), message)
-                    post_counter += 1
-                except FloodWaitError as e:
-                    await asyncio.sleep(e.seconds + 5)
-                    await client.send_message(int(destination_channel_id), message)
-                except Exception as e:
-                    print(f"An error occurred: {e}")
+            try:
+                await client.send_message(int(destination_channel_id), message)
+                post_counter += 1
+            except FloodWaitError as e:
+                await asyncio.sleep(e.seconds + 5)
+                await client.send_message(int(destination_channel_id), message)
+            except Exception as e:
+                print(f"An error occurred: {e}")
 
             if user_id not in tasks or tasks[user_id].cancelled():
                 break
+                
 # Event handler for starting the bot
 @bot.on(events.NewMessage(pattern='/start'))
 async def start(event):
