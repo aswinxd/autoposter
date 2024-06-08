@@ -3,17 +3,17 @@ from telethon.errors import FloodWaitError
 import asyncio
 import motor.motor_asyncio
 
-# Your API ID, API hash, and bot token  
-api_id = 12799559
-api_hash = '077254e69d93d08357f25bb5f4504580'
-bot_token = '6771923691:AAFD-r_CXusMb7pQdrTOg1uZSztCz96YBYw'
+# Your API ID, API hash, and bot token
+api_id = "22181658"
+api_hash = '3138df6840cbdbc28c370fd29218139a'
+bot_token = '7452901508:AAHuEOrkSYcDlaoUX8GD5msVimjJJ1iLJ1E'
 
 # Initialize the Telegram client and bot
 client = TelegramClient('user_session', api_id, api_hash)
 bot = TelegramClient('bot_session', api_id, api_hash).start(bot_token=bot_token)
 
 # Initialize MongoDB client
-mongo_client = motor.motor_asyncio.AsyncIOMotorClient('mongodb+srv://test:test@cluster0.q9llhnj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+mongo_client = motor.motor_asyncio.AsyncIOMotorClient('mongodb+srv://forwd:forwdo@cluster0.nkmhi9a.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
 db = mongo_client['telegram_bot']
 collection = db['schedules']
 
